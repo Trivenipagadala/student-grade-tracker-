@@ -1,0 +1,36 @@
+# Student Grade Tracker
+
+def input_grades():
+    subjects = {}
+    while True:
+        subject = input("Enter subject name (or type 'done' to finish): ")
+        if subject.lower() == 'done':
+            break
+        try:
+            grade = float(input(f"Enter grade for {subject}: "))
+            subjects[subject] = grade
+        except ValueError:
+            print("Invalid input. Please enter a numeric value for the grade.")
+    return subjects
+
+def calculate_average(subjects):
+    if not subjects:
+        return 0
+    total = sum(subjects.values())
+    average = total / len(subjects)
+    return average
+
+def main():
+    print("Student Grade Tracker")
+    grades = input_grades()
+    average = calculate_average(grades)
+    if grades:
+        print("\nGrades:")
+        for subject, grade in grades.items():
+            print(f"{subject}: {grade}")
+        print(f"\nAverage grade: {average:.2f}")
+    else:
+        print("No grades entered.")
+
+if __name__ == "__main__":
+    main()
